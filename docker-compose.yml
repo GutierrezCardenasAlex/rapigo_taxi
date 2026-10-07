@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "18080:80"
+      - "31080:80"
     networks:
       - rapigo-network
 

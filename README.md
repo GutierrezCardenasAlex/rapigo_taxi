@@ -17,16 +17,16 @@ npm run build
 
 ## Despliegue en VPS con Docker
 
-El proyecto incluye un `Dockerfile` de producción con Nginx. El contenedor expone RAPIGO en el puerto `18080` del VPS:
+El proyecto incluye un `Dockerfile` de producción con Nginx. El contenedor expone RAPIGO en el puerto `31080` del VPS:
 
 ```txt
-http://IP_DEL_VPS:18080
+http://IP_DEL_VPS:31080
 ```
 
 Antes de levantarlo en el VPS:
 
 1. Apunta el registro DNS `A` de `rapigotaxi.cybernovatech.space` a la IP pública del VPS.
-2. Asegúrate de que el puerto `18080` esté libre o cambia ese puerto en `docker-compose.yml`.
+2. Asegúrate de que el puerto `31080` esté libre o cambia ese puerto en `docker-compose.yml`.
 3. Sube el proyecto al servidor.
 4. Ejecuta:
 
@@ -41,7 +41,7 @@ server {
   server_name rapigotaxi.cybernovatech.space;
 
   location / {
-    proxy_pass http://127.0.0.1:18080;
+    proxy_pass http://127.0.0.1:31080;
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
