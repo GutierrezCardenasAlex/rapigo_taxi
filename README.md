@@ -15,18 +15,18 @@ npm run dev
 npm run build
 ```
 
-## Despliegue en VPS con Docker y HTTPS
+## Despliegue en VPS con Docker
 
-El proyecto incluye un `Dockerfile` de producción con Nginx y un `docker-compose.yml` con Caddy para publicar el sitio con HTTPS automático en:
+El proyecto incluye un `Dockerfile` de producción con Nginx. El contenedor expone RAPIGO en el puerto `18080` del VPS:
 
 ```txt
-https://rapigotaxi.cybernovatech.space
+http://IP_DEL_VPS:18080
 ```
 
 Antes de levantarlo en el VPS:
 
 1. Apunta el registro DNS `A` de `rapigotaxi.cybernovatech.space` a la IP pública del VPS.
-2. Abre los puertos `18080` y `18443` en el firewall del VPS.
+2. Asegúrate de que el puerto `18080` esté libre o cambia ese puerto en `docker-compose.yml`.
 3. Sube el proyecto al servidor.
 4. Ejecuta:
 
@@ -34,16 +34,27 @@ Antes de levantarlo en el VPS:
 docker compose up -d --build
 ```
 
-Caddy solicitará y renovará automáticamente el certificado SSL.
+Si el VPS ya tiene otra web usando `80` y `443`, configura ese servidor web como proxy para este dominio:
 
-Esta configuración publica el sitio en puertos alternativos porque el puerto `80` puede estar ocupado por otro servicio:
+```nginx
+server {
+  server_name rapigotaxi.cybernovatech.space;
 
-```txt
-http://rapigotaxi.cybernovatech.space:18080
-https://rapigotaxi.cybernovatech.space:18443
+  location / {
+    proxy_pass http://127.0.0.1:18080;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+}
 ```
 
-Para usar el dominio sin puerto visible, libera los puertos `80` y `443` en el VPS o configura el servicio que ya los ocupa como proxy hacia `http://localhost:18080`.
+Después activa HTTPS con Certbot sobre ese bloque:
+
+```bash
+sudo certbot --nginx -d rapigotaxi.cybernovatech.space
+```
 
 Para ver logs:
 
