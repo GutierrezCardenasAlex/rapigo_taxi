@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Menu, X, Zap } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { navLinks } from '../config/data'
 
 export default function Navbar() {
@@ -8,11 +8,12 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-slate-950/88 text-white backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#inicio" className="flex items-center gap-2 font-black tracking-normal">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-yellow-400 text-slate-950">
-            <Zap className="h-5 w-5 fill-current" />
-          </span>
-          <span className="text-xl">RAPIGO</span>
+        <a href="#inicio" className="flex items-center" aria-label="RAPIGO inicio">
+          <img
+            src="/brand/rapigo-logo.jpeg"
+            alt="RAPIGO"
+            className="h-10 w-auto rounded bg-black object-contain sm:h-12"
+          />
         </a>
 
         <div className="hidden items-center gap-7 md:flex">
