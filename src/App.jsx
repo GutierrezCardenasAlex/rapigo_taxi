@@ -6,6 +6,7 @@ import DriversSection from './components/DriversSection'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
+import PartnersSection from './components/PartnersSection'
 import PassengersSection from './components/PassengersSection'
 import SecuritySection from './components/SecuritySection'
 import TaxiSeguro from './components/TaxiSeguro'
@@ -20,6 +21,7 @@ export default function App() {
         <AppsSection />
         <DownloadSection />
         <TaxiSeguro />
+        <PartnersSection />
         <PassengersSection />
         <DriversSection />
         <SecuritySection />
