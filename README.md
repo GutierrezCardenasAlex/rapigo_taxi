@@ -26,7 +26,7 @@ https://rapigotaxi.cybernovatech.space
 Antes de levantarlo en el VPS:
 
 1. Apunta el registro DNS `A` de `rapigotaxi.cybernovatech.space` a la IP pública del VPS.
-2. Abre los puertos `8080` y `8443` en el firewall del VPS.
+2. Abre los puertos `18080` y `18443` en el firewall del VPS.
 3. Sube el proyecto al servidor.
 4. Ejecuta:
 
@@ -39,11 +39,11 @@ Caddy solicitará y renovará automáticamente el certificado SSL.
 Esta configuración publica el sitio en puertos alternativos porque el puerto `80` puede estar ocupado por otro servicio:
 
 ```txt
-http://rapigotaxi.cybernovatech.space:8080
-https://rapigotaxi.cybernovatech.space:8443
+http://rapigotaxi.cybernovatech.space:18080
+https://rapigotaxi.cybernovatech.space:18443
 ```
 
-Para usar el dominio sin puerto visible, libera los puertos `80` y `443` en el VPS o configura el servicio que ya los ocupa como proxy hacia `http://localhost:8080`.
+Para usar el dominio sin puerto visible, libera los puertos `80` y `443` en el VPS o configura el servicio que ya los ocupa como proxy hacia `http://localhost:18080`.
 
 Para ver logs:
 
