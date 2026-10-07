@@ -1,0 +1,4 @@
+rapigotaxi.cybernovatech.space {
+  encode gzip zstd
+  reverse_proxy rapigo-web:80
+}
